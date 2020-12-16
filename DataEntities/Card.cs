@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace DataEntities
 {
@@ -12,5 +10,7 @@ namespace DataEntities
 
         public int WalletId { get; set; }
         public Wallet Wallet { get; set; }
+
+        public ICollection<TransactionCard> TransactionCards { get; set; }
     }
 }
