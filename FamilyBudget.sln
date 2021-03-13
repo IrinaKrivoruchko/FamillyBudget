@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FamillyBudget", "FamillyBudget\FamillyBudget.csproj", "{792A1744-DA54-4E27-BAED-CE6F906CBFE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FamilyBudget", "FamillyBudget\FamilyBudget.csproj", "{792A1744-DA54-4E27-BAED-CE6F906CBFE7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataStorage", "DataStorage\DataStorage.csproj", "{85BE3327-9624-4279-AED0-5A603DA9CD89}"
 EndProject

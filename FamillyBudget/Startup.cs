@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Wallets.Services;
 
-namespace FamillyBudget
+namespace FamilyBudget
 {
     public class Startup
     {

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Wallets.Services;
 
-namespace FamillyBudget.Controllers
+namespace FamilyBudget.Controllers
 {
     [Controller]
     [Route("users/{id}/wallet")]
