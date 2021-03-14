@@ -4,13 +4,12 @@ using Wallets.Services;
 
 namespace FamilyBudget.Controllers
 {
-    [Controller]
     [Route("users/{id}/wallet")]
-    public class Wallet : ControllerBase
+    public class WalletController : ControllerBase
     {
         private readonly WalletService _service;
 
-        public Wallet(WalletService service)
+        public WalletController(WalletService service)
         {
             _service = service;
         }

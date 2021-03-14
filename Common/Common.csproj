@@ -8,9 +8,4 @@
     <PackageReference Include="AutoMapper" Version="10.1.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\DataStorage\DataStorage.csproj" />
-    <ProjectReference Include="..\FamilyDto\FamilyDto.csproj" />
-  </ItemGroup>
-
 </Project>

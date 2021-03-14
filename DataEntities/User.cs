@@ -9,7 +9,7 @@ namespace DataEntities
         public int Id { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string Login { get; set; }
 
         [DataType(DataType.EmailAddress)]
         [Required]

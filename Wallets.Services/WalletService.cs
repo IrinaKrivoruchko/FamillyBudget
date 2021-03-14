@@ -16,7 +16,6 @@ namespace Wallets.Services
 
         public WalletDto CreateWallet(int userId, WalletDto walletDto)
         {
-            //TODO
             //1. userid does not have a wallet
             //2. WalletDto - Wallet
             //3. Save Wallet to Database
