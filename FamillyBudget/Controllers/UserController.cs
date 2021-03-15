@@ -25,5 +25,12 @@ namespace FamilyBudget.Controllers
             var createdUser = await _service.CreateUserAsync(userDto);
             return Ok(createdUser);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> UserDelete(int id)
+        {
+            await _service.DeleteUserAsync(id);
+            return Ok();
+        }
     }
 }

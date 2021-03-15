@@ -10,7 +10,7 @@ namespace DataStorage
 			using (var scope = services.CreateScope())
 			{
 				var context = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
-				context.Database.EnsureDeleted();
+				//context.Database.EnsureDeleted();
 				context.Database.EnsureCreated();
 			}
 		}

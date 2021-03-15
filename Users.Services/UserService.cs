@@ -27,13 +27,25 @@ namespace Users.Services
                 throw new ArgumentException($"Duplicated user with login {userDto.Login}");
             }
 
-            var userEntity = _serviceMapper.Map<UserDto, User>(userDto);
+            var userEntityAdd = _serviceMapper.Map<UserDto, User>(userDto);
 
-            await _dbContext.Users.AddAsync(userEntity);
+            await _dbContext.Users.AddAsync(userEntityAdd);
             await _dbContext.SaveChangesAsync();
 
-            userDto = _serviceMapper.Map<User, UserDto>(userEntity);
+            userDto = _serviceMapper.Map<User, UserDto>(userEntityAdd);
             return userDto;
+        }
+        public async Task DeleteUserAsync(int id)
+        {
+            var user = _dbContext.Users.FirstOrDefault(x => x.Id == id);
+
+            if (user == null)
+            {
+                throw new NullReferenceException($"This user {user.Login} not found");
+            }
+
+            _dbContext.Users.Remove(user);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }
