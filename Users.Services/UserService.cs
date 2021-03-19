@@ -36,6 +36,7 @@ namespace Users.Services
             userDto = _serviceMapper.Map<User, UserDto>(userEntityAdd);
             return userDto;
         }
+
         public async Task DeleteUserAsync(int id)
         {
             var user = _dbContext.Users.FirstOrDefault(x => x.Id == id);

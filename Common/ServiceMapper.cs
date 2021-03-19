@@ -34,9 +34,9 @@ namespace Common
         {
             return _mapper.Map<TSource, TDestination>(source);
         }
-        public TDest Merge<TSource, TDest>(TSource src, TDest dest)
+        public TDestination Merge<TSource, TDestination>(TSource src, TDestination dest)
         {
-            return _mergeMapper.Map<TSource, TDest>(src, dest);
+            return _mergeMapper.Map<TSource, TDestination>(src, dest);
         }
         internal IMapper CreateMergeMapper(Action<IMapperConfigurationExpression> configExpression)
         {

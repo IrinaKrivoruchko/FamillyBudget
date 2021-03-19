@@ -13,8 +13,8 @@
     <ProjectReference Include="..\Common\Common.csproj" />
     <ProjectReference Include="..\DataStorage\DataStorage.csproj" />
     <ProjectReference Include="..\FamilyDto\FamilyDto.csproj" />
+    <ProjectReference Include="..\Services\Cards.Services\Cards.Services.csproj" />
     <ProjectReference Include="..\Users.Services\Users.Services.csproj" />
-    <ProjectReference Include="..\Wallets.Services\Wallets.Services.csproj" />
   </ItemGroup>
 
 </Project>

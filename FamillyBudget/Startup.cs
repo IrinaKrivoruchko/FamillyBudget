@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Users.Services;
-using Wallets.Services;
+using Cards.Services;
 
 namespace FamilyBudget
 {
@@ -67,7 +67,7 @@ namespace FamilyBudget
         public void RegisterServices(IServiceCollection services)
         {
             services.AddScoped<UserService>();
-            services.AddScoped<WalletService>();
+            services.AddScoped<CardService>();
         }
 
         public void RegisterServicesMapper(IServiceCollection services)

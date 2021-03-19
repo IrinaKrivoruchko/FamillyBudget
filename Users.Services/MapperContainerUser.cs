@@ -4,12 +4,12 @@ using FamilyDto;
 
 namespace Users.Services
 {
-    public class MapperContainer : Profile
+    public class MapperContainerUser : Profile
     {
-        public MapperContainer()
+        public MapperContainerUser()
         {
             CreateMap<UserDto, User>()
-                .ForMember(dest => dest.Wallet, opt => opt.Ignore());
+                .ForMember(x => x.Cards, opt => opt.Ignore());
 
             CreateMap<User, UserDto>();
         }
