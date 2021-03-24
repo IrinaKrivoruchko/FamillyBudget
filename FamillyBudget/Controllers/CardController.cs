@@ -2,6 +2,7 @@
 using FamilyBudget.Filters;
 using FamilyDto;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,17 +20,15 @@ namespace FamilyBudget.Controllers
         }
 
         [HttpGet]
-        public IQueryable<CardDto> AllCardsOfUserGet(int userId)
+        public async Task<IQueryable<CardDto>> AllCardsOfUserGet(int userId)
         {
-            return _service.GetAllCardsForUser(userId);
+            return await _service.GetAllCardsForUser(userId);
         }
 
         [HttpGet("{cardId}")]
-        public async Task<IActionResult> CardGetAsync(int userId, int cardId, CardDto cardDto)
+        public async Task<IActionResult> CardGetAsync(int userId, int cardId)
         {
-            cardDto.Id = cardId;
-            var getCard = await _service.GetCardAsync(userId, cardId);
-            return Ok(getCard);
+            return Ok(await _service.GetCardAsync(userId, cardId));
         }
 
         [HttpPost]

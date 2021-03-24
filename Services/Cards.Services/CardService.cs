@@ -6,7 +6,6 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 
 namespace Cards.Services
 {
@@ -21,8 +20,14 @@ namespace Cards.Services
             _serviceMapper = serviceMapper;
         }
 
-        public IQueryable<CardDto> GetAllCardsForUser(int userId)
+        public async Task<IQueryable<CardDto>> GetAllCardsForUser(int userId)
         {
+            var user = await _dbContext.Users.FirstOrDefaultAsync(x => x.Id == userId);
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user), $"Not found user by id {userId}");
+            }
+
             return _dbContext.Cards
                  .Where(x => x.UserId == userId)
                  .Select(card => _serviceMapper.Map<Card, CardDto>(card));
@@ -30,7 +35,15 @@ namespace Cards.Services
 
         public async Task<CardDto> GetCardAsync(int userId, int cardId)
         {
-            var card = await _dbContext.Cards.FirstOrDefaultAsync(x => x.UserId == userId && x.Id == cardId);
+            var user = await _dbContext.Users
+                .Include(x => x.Cards)
+                .FirstOrDefaultAsync(x => x.Id == userId);
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user), $"Not found user by id {userId}");
+            }
+
+            var card = user.Cards.FirstOrDefault(x => x.Id == cardId);
             return _serviceMapper.Map<Card, CardDto>(card);
         }
 
