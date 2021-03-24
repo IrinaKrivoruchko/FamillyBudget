@@ -1,4 +1,5 @@
 ﻿using Cards.Services;
+using FamilyBudget.Filters;
 using FamilyDto;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 namespace FamilyBudget.Controllers
 {
     [Route("users/{userId}/cards")]
-    //[ApiExceptionFilter]
+    [ApiExceptionFilter]
     public class CardController : ControllerBase
     {
         private readonly CardService _service;

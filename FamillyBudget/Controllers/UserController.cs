@@ -3,10 +3,12 @@ using Users.Services;
 using FamilyDto;
 using System.Threading.Tasks;
 using System.Linq;
+using FamilyBudget.Filters;
 
 namespace FamilyBudget.Controllers
 {
     [Route("users")]
+    [ApiExceptionFilter]
     public class UserController : ControllerBase
     {
         private readonly UserService _service;
