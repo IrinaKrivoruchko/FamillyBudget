@@ -34,10 +34,12 @@ namespace Common
         {
             return _mapper.Map<TSource, TDestination>(source);
         }
+
         public TDestination Merge<TSource, TDestination>(TSource src, TDestination dest)
         {
-            return _mergeMapper.Map<TSource, TDestination>(src, dest);
+            return _mergeMapper.Map(src, dest);
         }
+
         internal IMapper CreateMergeMapper(Action<IMapperConfigurationExpression> configExpression)
         {
             var ignoreDefaultValueConfiguration = new MapperConfiguration((cfg) =>

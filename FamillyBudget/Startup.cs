@@ -23,18 +23,12 @@ namespace FamilyBudget
 
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddRazorPages();
             services.AddDbContext<DatabaseContext>(options =>
             {
                 string connectionStr = Configuration.GetConnectionString("DefaultConnection");
                 options.UseSqlServer(connectionStr);
             });
-            //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-            //    .AddCookie(options => 
-            //    {
-            //        options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
-            //    });
             RegisterServicesMapper(services);
             RegisterServices(services);
         }
@@ -74,7 +68,8 @@ namespace FamilyBudget
         {
             var configExpression = ServiceMapper.GetMapperConfiguration(new string[]
             {
-                 "Users.Services",
+                 "Users.Services", 
+                 "Cards.Services"
             });
             services.AddSingleton(configExpression);
             services.AddScoped<IServiceMapper, ServiceMapper>();

@@ -15,8 +15,8 @@ namespace DataEntities
         [Required]
         public decimal Balance { get; set; }
 
-        public int WalletId { get; set; }
-        public Wallet Wallet { get; set; }
+        public int UserId { get; set; }
+        public User User { get; set; }
 
         public ICollection<TransactionCash> TransactionCashes { get; set; }
     }

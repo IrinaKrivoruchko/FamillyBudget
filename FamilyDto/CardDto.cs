@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace DataEntities
+namespace FamilyDto
 {
-    public class Card
+    public class CardDto
     {
         [Key]
         public int Id { get; set; }
@@ -18,10 +17,5 @@ namespace DataEntities
 
         [Required]
         public decimal Balance { get; set; }
-
-        public int UserId { get; set; }
-        public User User { get; set; }
-
-        public ICollection<TransactionCard> TransactionCards { get; set; }
     }
 }

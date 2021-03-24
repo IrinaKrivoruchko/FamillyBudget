@@ -22,6 +22,14 @@ namespace FamilyBudget.Controllers
             return _service.GetAllUser();
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> UserGetAsync(UserDto userDto, int id)
+        {
+            userDto.Id = id;
+            var getUser = await _service.GetUserAsync(id);
+            return Ok(getUser);
+        }
+
         [HttpPost]
         public async Task<IActionResult> UserCreate([FromBody]UserDto userDto)
         {
@@ -51,14 +59,6 @@ namespace FamilyBudget.Controllers
             userDto.Id = id;
             var newUser = await _service.PatchUserAsync(userDto);
             return Ok(newUser);
-        }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> UserGetAsync(UserDto userDto, int id)
-        {
-            userDto.Id = id;
-            var getUser = await _service.GetUserAsync(id);
-            return Ok(getUser);
         }
     }
 }
