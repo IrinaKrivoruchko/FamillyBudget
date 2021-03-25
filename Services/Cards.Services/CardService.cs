@@ -62,5 +62,33 @@ namespace Cards.Services
             await _dbContext.SaveChangesAsync();
             return _serviceMapper.Map<Card, CardDto>(cardEntityAdd);
         }
+
+        public async Task DeleteCardAsync(int userId, int cardId)
+        {
+            var user = await _dbContext.Users.FirstOrDefaultAsync(x => x.Id == userId);
+            var card = _dbContext.Cards.FirstOrDefault(x => x.Id == cardId);
+            if (user == null || card == null || card.UserId != userId)
+            {
+                throw new Exception($"Not found user by id {userId} or card {card.Id} is not found \n Change data");
+            }
+
+            _dbContext.Cards.Remove(card);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task<Card> PatchCardAsync(int userId, CardDto cardDto)
+        {
+            var user = await _dbContext.Users.FirstOrDefaultAsync(x => x.Id == userId);
+            var card = _dbContext.Cards.FirstOrDefault(x => x.Id == cardDto.Id);
+            
+            if (user == null || card == null || card.UserId != userId)
+            {
+                throw new Exception($"Not found user by id {userId} or card {card.Id} is not found \n Change data");
+            }
+
+            var cardMerge = _serviceMapper.Merge(cardDto, card);
+            await _dbContext.SaveChangesAsync();
+            return cardMerge;
+        }
     }
 }

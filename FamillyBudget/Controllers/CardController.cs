@@ -3,6 +3,7 @@ using FamilyBudget.Filters;
 using FamilyDto;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,7 +21,7 @@ namespace FamilyBudget.Controllers
         }
 
         [HttpGet]
-        public async Task<IQueryable<CardDto>> AllCardsOfUserGet(int userId)
+        public async Task<IQueryable<CardDto>> AllCardsForUserGet(int userId)
         {
             return await _service.GetAllCardsForUser(userId);
         }
@@ -32,7 +33,7 @@ namespace FamilyBudget.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCardsForUser(int userId, [FromBody]CardDto cardDto)
+        public async Task<IActionResult> CreateCardsForUser(int userId, [FromBody] CardDto cardDto)
         {
             if (!ModelState.IsValid)
             {
@@ -40,6 +41,26 @@ namespace FamilyBudget.Controllers
             }
             var createdCard = await _service.CreateCardsForUserAsync(userId, cardDto);
             return Ok(createdCard);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> CardDelete([FromRoute]int userId, int id)
+        {
+            await _service.DeleteCardAsync(userId, id);
+            return Ok();
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> CardPatch([FromRoute]int userId, [FromBody]CardDto cardDto, int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            cardDto.Id = id;
+            var newCard = await _service.PatchCardAsync(userId, cardDto);
+            return Ok(newCard);
         }
     }
 }

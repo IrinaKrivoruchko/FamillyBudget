@@ -13,7 +13,7 @@ namespace FamilyBudget.Filters
             string exceptionMessage = context.Exception.Message;
             context.Result = new ContentResult
             {
-                Content = $"В методе {actionName} возникло исключение: \n {exceptionMessage} \n {exceptionStack}"
+                Content = $"In the method {actionName} was thrown exception: \n {exceptionMessage} \n {exceptionStack}"
             };
             context.ExceptionHandled = true;
         }
