@@ -25,7 +25,7 @@ namespace Cards.Services
             var user = await _dbContext.Users.FirstOrDefaultAsync(x => x.Id == userId);
             if (user == null)
             {
-                throw new ArgumentNullException(nameof(user), $"Not found user by id {userId}");
+                throw new NullReferenceException($"Not found user by id {userId}");
             }
 
             return _dbContext.Cards
@@ -40,7 +40,7 @@ namespace Cards.Services
                 .FirstOrDefaultAsync(x => x.Id == userId);
             if (user == null)
             {
-                throw new ArgumentNullException(nameof(user), $"Not found user by id {userId}");
+                throw new NullReferenceException($"Not found user by id {userId}");
             }
 
             var card = user.Cards.FirstOrDefault(x => x.Id == cardId);
@@ -54,7 +54,7 @@ namespace Cards.Services
                 .FirstOrDefaultAsync(x => x.Id == userId);
             if (user == null)
             {
-                throw new ArgumentNullException($"This user {userId} does not exist");
+                throw new NullReferenceException($"This user {userId} does not exist");
             }
 
             var cardEntityAdd = _serviceMapper.Map<CardDto, Card>(cardDto);
