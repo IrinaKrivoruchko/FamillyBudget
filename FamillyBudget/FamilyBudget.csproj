@@ -14,6 +14,7 @@
     <ProjectReference Include="..\DataStorage\DataStorage.csproj" />
     <ProjectReference Include="..\FamilyDto\FamilyDto.csproj" />
     <ProjectReference Include="..\Services\Cards.Services\Cards.Services.csproj" />
+    <ProjectReference Include="..\Services\Cashes.Services\Cashes.Services.csproj" />
     <ProjectReference Include="..\Users.Services\Users.Services.csproj" />
   </ItemGroup>
 
