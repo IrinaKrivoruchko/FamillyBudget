@@ -30,6 +30,7 @@ namespace Cards.Services
 
             return _dbContext.Cards
                  .Where(x => x.UserId == userId)
+                 .Where(card => card.UserId == userId)
                  .Select(card => _serviceMapper.Map<Card, CardDto>(card));
         }
 
@@ -76,7 +77,7 @@ namespace Cards.Services
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<Card> PatchCardAsync(int userId, CardDto cardDto)
+        public async Task<CardDto> PatchCardAsync(int userId, CardDto cardDto)
         {
             var user = await _dbContext.Users.FirstOrDefaultAsync(x => x.Id == userId);
             var card = _dbContext.Cards.FirstOrDefault(x => x.Id == cardDto.Id);
@@ -88,7 +89,8 @@ namespace Cards.Services
 
             var cardMerge = _serviceMapper.Merge(cardDto, card);
             await _dbContext.SaveChangesAsync();
-            return cardMerge;
+            var newCardMergeMap = _serviceMapper.Map<Card, CardDto>(cardMerge);
+            return newCardMergeMap;
         }
     }
 }

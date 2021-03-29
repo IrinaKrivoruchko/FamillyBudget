@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Users.Services;
 using Cards.Services;
 using Cashes.Services;
+using Deposits.Services;
 
 namespace FamilyBudget
 {
@@ -64,6 +65,7 @@ namespace FamilyBudget
             services.AddScoped<UserService>();
             services.AddScoped<CardService>();
             services.AddScoped<CashService>();
+            services.AddScoped<DepositService>();
         }
 
         public void RegisterServicesMapper(IServiceCollection services)
@@ -72,7 +74,8 @@ namespace FamilyBudget
             {
                  "Users.Services", 
                  "Cards.Services",
-                 "Cashes.Services"
+                 "Cashes.Services",
+                 "Deposits.Services"
             });
             services.AddSingleton(configExpression);
             services.AddScoped<IServiceMapper, ServiceMapper>();

@@ -50,7 +50,6 @@ namespace Cashes.Services
                 throw new Exception($"Not found user by id {userId} or cashNumer {cashId} \n Change data");
             }
 
-            var card = user.Cashes.FirstOrDefault(x => x.Id == cashId);
             return _serviceMapper.Map<Cash, CashDto>(cash);
         }
 
@@ -68,7 +67,7 @@ namespace Cashes.Services
                 .Select(cash => _serviceMapper.Map<Cash, CashDto>(cash));
         }
 
-        public async Task<Cash> PatchCashAsync(int userId, CashDto cashDto)
+        public async Task<CashDto> PatchCashAsync(int userId, CashDto cashDto)
         {
             var user = await _dbContext.Users.FirstOrDefaultAsync(x => x.Id == userId);
             var cash = _dbContext.Cashes.FirstOrDefault(x => x.Id == cashDto.Id);
@@ -80,7 +79,8 @@ namespace Cashes.Services
 
             var cashMerge = _serviceMapper.Merge(cashDto, cash);
             await _dbContext.SaveChangesAsync();
-            return cashMerge;
+            var newCashMergeMap = _serviceMapper.Map<Cash, CashDto>(cashMerge);
+            return newCashMergeMap;
         }
 
         public async Task DeleteCashAsync(int userId, int cashId)

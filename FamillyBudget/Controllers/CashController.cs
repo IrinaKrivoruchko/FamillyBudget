@@ -21,7 +21,7 @@ namespace FamilyBudget.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCashesForUser(int userId, [FromBody]CashDto cashDto)
+        public async Task<IActionResult> CreateCashesForUser([FromRoute]int userId, [FromBody]CashDto cashDto)
         {
             if(!ModelState.IsValid)
             {
@@ -38,27 +38,27 @@ namespace FamilyBudget.Controllers
         }
 
         [HttpGet("{cashId}")]
-        public async Task<IActionResult> CashGetAsync([FromRoute]int userId, int cashId)
+        public async Task<IActionResult> CashGetAsync([FromRoute]int userId, [FromRoute]int cashId)
         {
             return Ok(await _service.GetCashAsync(userId, cashId));
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> CashDelete([FromRoute] int userId, int id)
+        [HttpDelete("{cashId}")]
+        public async Task<IActionResult> CashDelete([FromRoute]int userId, [FromRoute]int cashId)
         {
-            await _service.DeleteCashAsync(userId, id);
+            await _service.DeleteCashAsync(userId, cashId);
             return Ok();
         }
 
-        [HttpPatch("{id}")]
-        public async Task<IActionResult> CashPatch([FromRoute] int userId, [FromBody] CashDto cashDto, int id)
+        [HttpPatch("{cashId}")]
+        public async Task<IActionResult> CashPatch([FromRoute]int userId, [FromBody]CashDto cashDto, [FromRoute]int cashId)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-            cashDto.Id = id;
+            cashDto.Id = cashId;
             var newCash = await _service.PatchCashAsync(userId, cashDto);
             return Ok(newCash);
         }

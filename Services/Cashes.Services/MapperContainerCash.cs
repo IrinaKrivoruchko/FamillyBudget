@@ -12,7 +12,7 @@ namespace Cashes.Services
                 .ForMember(x => x.TransactionCashes, opt => opt.Ignore())
                 .ForMember(y => y.UserId, opt => opt.Ignore())
                 .ForMember(z => z.User, opt => opt.Ignore()); 
-            ;
+            
             CreateMap<Cash, CashDto>();
         }
     }
