@@ -9,9 +9,7 @@ namespace Users.Services
         public MapperContainerUser()
         {
             CreateMap<UserDto, User>()
-                .ForMember(x => x.Cards, opt => opt.Ignore())
-                .ForMember(y => y.Cashes, opt => opt.Ignore())
-                .ForMember(z => z.Deposits, opt => opt.Ignore());
+                .ForMember(x => x.Accounts, y => y.Ignore());
 
             CreateMap<User, UserDto>();
         }

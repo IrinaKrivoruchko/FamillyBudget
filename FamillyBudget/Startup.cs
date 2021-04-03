@@ -8,9 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Users.Services;
-using Cards.Services;
-using Cashes.Services;
-using Deposits.Services;
+using Accounts.Services;
+using AccountsStatements.Services;
 
 namespace FamilyBudget
 {
@@ -63,19 +62,17 @@ namespace FamilyBudget
         public void RegisterServices(IServiceCollection services)
         {
             services.AddScoped<UserService>();
-            services.AddScoped<CardService>();
-            services.AddScoped<CashService>();
-            services.AddScoped<DepositService>();
+            services.AddScoped<AccountService>();
+            services.AddScoped<TransferBetweenAccounts>();
         }
 
         public void RegisterServicesMapper(IServiceCollection services)
         {
             var configExpression = ServiceMapper.GetMapperConfiguration(new string[]
             {
-                 "Users.Services", 
-                 "Cards.Services",
-                 "Cashes.Services",
-                 "Deposits.Services"
+                 "Users.Services",
+                 "Accounts.Services",
+                 "AccountsStatements.Services"
             });
             services.AddSingleton(configExpression);
             services.AddScoped<IServiceMapper, ServiceMapper>();

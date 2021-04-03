@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace DataEntities
 {
-    public class TransactionCard
+    public class AccountStatement
     {
         [Key]
         public int Id { get; set; }
@@ -12,11 +14,10 @@ namespace DataEntities
         public DateTime DateTime { get; set; }
 
         [Required]
-        [DataType(DataType.Currency)]
-        public decimal Balance { get; set; }
+        public decimal SumTransaction { get; set; }
 
-        public int CardId { get; set; }
-        public Card Card { get; set; }
+        public int AccountId { get; set; }
+        public Account Account { get; set; }
 
         public int CategoryId { get; set; }
         public Category Category { get; set; }

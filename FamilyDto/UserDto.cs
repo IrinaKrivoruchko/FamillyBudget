@@ -11,7 +11,5 @@ namespace FamilyDto
         public string Email { get; set; }
 
         public string Password { get; set; }
-
-        public DateTime DayOfBirthday { get; set; }
     }
 }

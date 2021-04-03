@@ -1,15 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace FamilyDto
 {
-    public class CardDto
+    public class AccountDto
     {
         [Key]
         public int Id { get; set; }
-
-        [Required]
-        [CreditCard]
-        public string NumberCard { get; set; }
 
         [Required]
         [StringLength(20)]

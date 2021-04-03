@@ -5,16 +5,15 @@ using System.Text;
 
 namespace FamilyDto
 {
-    public class CashDto
+    public class AccountStatementDto
     {
         [Key]
         public int Id { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public DateTime DateTime { get; set; }
 
-        [DataType(DataType.Currency)]
         [Required]
-        public decimal Balance { get; set; }
+        public decimal SumTransaction { get; set; }
     }
 }

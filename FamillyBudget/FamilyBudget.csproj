@@ -10,12 +10,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Accounts.Services\Accounts.Services.csproj" />
+    <ProjectReference Include="..\AccountsStatements.Services\AccountsStatements.Services.csproj" />
     <ProjectReference Include="..\Common\Common.csproj" />
     <ProjectReference Include="..\DataStorage\DataStorage.csproj" />
     <ProjectReference Include="..\FamilyDto\FamilyDto.csproj" />
-    <ProjectReference Include="..\Services\Cards.Services\Cards.Services.csproj" />
-    <ProjectReference Include="..\Services\Cashes.Services\Cashes.Services.csproj" />
-    <ProjectReference Include="..\Services\Deposits.Services\Deposits.Services.csproj" />
     <ProjectReference Include="..\Users.Services\Users.Services.csproj" />
   </ItemGroup>
 

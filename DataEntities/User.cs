@@ -20,11 +20,6 @@ namespace DataEntities
         [Required]
         public string Password { get; set; }
 
-        [DataType(DataType.Date)]
-        public DateTime DayOfBirthday { get; set; }
-
-        public ICollection<Card> Cards { get; set; }
-        public ICollection<Cash> Cashes { get; set; }
-        public ICollection<Deposit> Deposits { get; set; }
+        public ICollection<Account> Accounts { get; set; }
     }
 }
