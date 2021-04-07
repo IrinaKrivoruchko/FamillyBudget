@@ -4,9 +4,7 @@ using DataStorage;
 using FamilyDto;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 
@@ -23,16 +21,17 @@ namespace AccountsStatements.Services
             _serviceMapper = serviceMapper;
         }
 
-        public async Task OperationAccountAsync(int fromAccountId, int toAccountId, AccountStatementDto accountStatementDto)
+        public async Task TransferAccountAsync(int userId, int fromAccountId, int toAccountId, AccountStatementDto accountStatementDto)
         {
             using (var tran = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {
+                var user = _dbContext.Users.FirstOrDefault(x => x.Id == userId);
                 var fromAccount = _dbContext.Accounts.Include(x => x.AccountStatements)
                     .FirstOrDefault(x => x.Id == fromAccountId);
                 var toAccount = _dbContext.Accounts.Include(x => x.AccountStatements)
                     .FirstOrDefault(x => x.Id == toAccountId);
 
-                if (fromAccount == null || toAccount == null || fromAccount == toAccount)
+                if (fromAccount == null || toAccount == null || fromAccount == toAccount || fromAccount.UserId == userId || toAccount.UserId == userId)
                 {
                     throw new ArgumentException("Bad request");
                 }

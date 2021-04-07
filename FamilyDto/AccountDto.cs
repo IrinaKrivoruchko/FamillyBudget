@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace FamilyDto
 {
@@ -16,5 +13,9 @@ namespace FamilyDto
 
         [Required]
         public decimal Balance { get; set; }
+
+        [Required]
+        [AccountType]
+        public string Type { get; set; }
     }
 }

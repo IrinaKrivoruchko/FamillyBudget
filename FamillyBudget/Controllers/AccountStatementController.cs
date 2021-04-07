@@ -1,34 +1,32 @@
 ﻿using FamilyBudget.Filters;
 using FamilyDto;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using AccountsStatements.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FamilyBudget.Controllers
 {
-    [Route("{fromAccountId}/{toAccountId}")]
+    [Route("users/{userId}/accounts/{accountId}")]
     [ApiExceptionFilter]
     public class AccountStatementController : ControllerBase
     {
-        private readonly TransferBetweenAccounts _withAccount;
+        private readonly AccountStatementService _statementAccount;
 
-        public AccountStatementController(TransferBetweenAccounts withAccount)
+        public AccountStatementController(AccountStatementService statementAccount)
         {
-            _withAccount = withAccount;
+            _statementAccount = statementAccount;
         }
 
         [HttpPost]
-        public async Task<IActionResult> AccountOperationAsync([FromRoute] int fromAccountId, [FromRoute] int toAccountId, [FromBody] AccountStatementDto accountStatementDto)
+        public async Task<IActionResult> AccountOperationAsync([FromRoute]int userId,[FromRoute] int accountId, [FromBody] AccountStatementDto accountStatementDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-            await _withAccount.OperationAccountAsync(fromAccountId, toAccountId, accountStatementDto);
+            await _statementAccount.AccountOperationAsync(userId, accountId, accountStatementDto);
 
             return Ok();
         }

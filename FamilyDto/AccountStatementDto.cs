@@ -15,5 +15,9 @@ namespace FamilyDto
 
         [Required]
         public decimal SumTransaction { get; set; }
+
+        public int AccountId { get; set; }
+
+        public int CategoryId { get; set; }
     }
 }

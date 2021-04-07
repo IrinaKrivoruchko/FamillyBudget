@@ -53,6 +53,7 @@ namespace Accounts.Services
             var user = await _dbContext.Users
                 .Include(x => x.Accounts)
                 .FirstOrDefaultAsync(x => x.Id == userId);
+
             if (user == null)
             {
                 throw new NullReferenceException($"This user {userId} does not exist");
@@ -61,6 +62,7 @@ namespace Accounts.Services
             var accountEntityAdd = _serviceMapper.Map<AccountDto, Account>(accountDto);
             user.Accounts.Add(accountEntityAdd);
             await _dbContext.SaveChangesAsync();
+            accountDto.Id = accountEntityAdd.Id;
             return _serviceMapper.Map<Account, AccountDto>(accountEntityAdd);
         }
 

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DataEntities
+﻿namespace DataEntities
 {
     public enum TypeAccount
     {
+        None = 0,
         Card = 1,
-        Cash,
-        Deposit
+        Cash = 2,
+        Deposit = 3
     }
-    
 }

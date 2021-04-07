@@ -11,7 +11,8 @@ namespace AccountsStatements.Services
     {
         public MapperContainerAccountStatement()
         {
-            CreateMap<AccountStatementDto, AccountStatement>();
+            CreateMap<AccountStatementDto, AccountStatement>()
+                .ForAllMembers(x => x.Ignore());
 
             CreateMap<AccountStatement, AccountStatementDto>();
         }

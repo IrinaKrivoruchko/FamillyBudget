@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace DataEntities
 {
@@ -17,8 +15,7 @@ namespace DataEntities
         [Required]
         public decimal Balance { get; set; }
 
-        public int TypeAccountId { get; set; }
-        public TypeAccount TypeAccount { get; set; }
+        public TypeAccount Type { get; set; }
 
         public int UserId { get; set; }
         public User User { get; set; }
