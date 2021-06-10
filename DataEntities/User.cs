@@ -1,16 +1,14 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace DataEntities
 {
-    public class User
+    public class User : IdentityUser
     {
         [Key]
         public int Id { get; set; }
-
-        [Required]
-        public string Login { get; set; }
 
         [DataType(DataType.EmailAddress)]
         [Required]
@@ -19,6 +17,9 @@ namespace DataEntities
         [DataType(DataType.Password)]
         [Required]
         public string Password { get; set; }
+
+        public int? RoleId { get; set; }
+        public Role Role { get; set; }
 
         public ICollection<Account> Accounts { get; set; }
     }

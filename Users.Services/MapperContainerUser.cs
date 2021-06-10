@@ -9,7 +9,9 @@ namespace Users.Services
         public MapperContainerUser()
         {
             CreateMap<UserDto, User>()
-                .ForMember(x => x.Accounts, y => y.Ignore());
+                .ForMember(x => x.Accounts, y => y.Ignore())
+                .ForMember(x => x.Role, y => y.Ignore())
+                .ForMember(x => x.RoleId, y => y.Ignore());
 
             CreateMap<User, UserDto>();
         }

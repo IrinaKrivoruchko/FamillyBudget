@@ -9,6 +9,7 @@ namespace FamilyBudget.Controllers
 {
     [Route("users/{userId}/accounts/{accountId}")]
     [ApiExceptionFilter]
+    [Authorize]
     public class AccountStatementController : ControllerBase
     {
         private readonly AccountStatementService _statementAccount;

@@ -4,14 +4,17 @@ using FamilyDto;
 using System.Threading.Tasks;
 using System.Linq;
 using FamilyBudget.Filters;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FamilyBudget.Controllers
 {
     [Route("users")]
     [ApiExceptionFilter]
+    [Authorize(Roles = "user")]
     public class UserController : ControllerBase
     {
         private readonly UserService _service;
+        
 
         public UserController(UserService service)
         {

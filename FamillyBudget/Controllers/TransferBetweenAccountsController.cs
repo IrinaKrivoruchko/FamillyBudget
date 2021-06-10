@@ -6,11 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AccountsStatements.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FamilyBudget.Controllers
 {
     [Route("users/{userId}/accounts/{fromAccountId}/{toAccountId}")]
     [ApiExceptionFilter]
+    [Authorize]
     public class TransferBetweenAccountsController : ControllerBase
     {
         private readonly TransferBetweenAccounts _withAccount;

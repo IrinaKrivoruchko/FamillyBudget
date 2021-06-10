@@ -1,7 +1,9 @@
 ﻿using Accounts.Services;
 using DataEntities;
+using DataStorage;
 using FamilyBudget.Filters;
 using FamilyDto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,9 +12,11 @@ namespace FamilyBudget.Controllers
 {
     [Route("users/{userId}/accounts")]
     [ApiExceptionFilter]
+    [Authorize]
     public class AccountController : ControllerBase
     {
         private readonly AccountService _service;
+        
 
         public AccountController(AccountService service)
         {

@@ -1,6 +1,5 @@
 using Common;
 using DataStorage;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +9,11 @@ using Microsoft.Extensions.Hosting;
 using Users.Services;
 using Accounts.Services;
 using AccountsStatements.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Authorization.Services;
+using DataEntities;
+using Microsoft.AspNetCore.Identity;
 
 namespace FamilyBudget
 {
@@ -30,6 +34,28 @@ namespace FamilyBudget
                 string connectionStr = Configuration.GetConnectionString("DefaultConnection");
                 options.UseSqlServer(connectionStr);
             });
+
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<DatabaseContext>();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                    .AddJwtBearer(options =>
+                    {
+                        options.RequireHttpsMetadata = false;
+                        options.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            ValidateIssuer = true,
+                            ValidIssuer = AuthOptions.ISSUER,
+
+                            ValidateAudience = true,
+                            ValidAudience = AuthOptions.AUDIENCE,
+                            ValidateLifetime = true,
+
+                            IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
+                            ValidateIssuerSigningKey = true,
+                        };
+                    });
+            services.AddAuthorization();
             RegisterServicesMapper(services);
             RegisterServices(services);
         }
@@ -44,13 +70,13 @@ namespace FamilyBudget
             {
                 app.UseExceptionHandler("/Error");
             }
-
+            app.UseDefaultFiles();
             app.UseStaticFiles();
 
             app.UseRouting();
 
-            //app.UseAuthentication();
-            //app.UseAuthorization();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();
